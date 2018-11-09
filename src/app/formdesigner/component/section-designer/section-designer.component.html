@@ -1,0 +1,55 @@
+<p>
+	section-designer works!
+</p>
+
+<div class="example-container">
+	<h2>To do</h2>
+
+	<div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]" class="example-list"
+	 (cdkDropListDropped)="drop($event)">
+		<div class="example-box list-of-control" *ngFor="let item of todo" cdkDrag>
+			<span>{{item.value}}</span>
+			<div class="form-group">
+				<label for="{{item.key}}">{{item.key}}::{{item.value}}</label>
+				<input class="form-control" id="{{item.key}}" placeholder="{{item.value}}" autocomplete="off">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="example-container">
+	<h2>Done</h2>
+
+	<div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]" class="example-list"
+	 (cdkDropListDropped)="drop($event)">
+
+		<div class="example-box" *ngFor="let item of done; let i = index" cdkDrag>
+			<div class="form-group">
+				<label for="{{item.key}}">{{item.key}}::{{item.value}} (Index: {{i}})</label>
+				<input class="form-control" id="{{item.key}}" placeholder="{{item.value}}" autocomplete="off">
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div>
+	<h1>Drag and pull the edges of the rectangle</h1>
+	<div class="rectangle" [ngStyle]="style" mwlResizable [validateResize]="validate" [resizeEdges]="{bottom: false, right: true, top: false, left: false}"
+	 [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event)">
+		<!-- <img
+		  src="http://i.imgur.com/eqzz2dl.gif"
+		  class="resize-handle"
+		  mwlResizeHandle
+		  [resizeEdges]="{bottom: true, right: true}"> -->
+	</div>
+
+	<br>
+	<hr>
+
+
+	<div class="rectangle" [ngStyle]="style" mwlResizable [validateResize]="validate" [resizeEdges]="{bottom: false, right: true, top: false, left: false}"
+	 [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event)">
+	</div>
+
+</div>
